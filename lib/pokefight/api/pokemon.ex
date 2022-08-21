@@ -7,6 +7,12 @@ defmodule Pokefight.Api.Pokemon do
     get("pokemon/#{pokename}")
   end
 
+  def get_moves(pokename) do
+    {:ok, pokemon} = get_pokemon(pokename)
+
+    pokemon["moves"]
+  end
+
   def get(endpoint) do
     process_response(HTTPoison.get("#{@pokeapi_host}#{endpoint}"))
   end
